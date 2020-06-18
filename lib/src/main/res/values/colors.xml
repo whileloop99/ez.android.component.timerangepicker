@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0081cc</color>
+    <color name="colorPrimaryDark">#005a8e</color>
+    <color name="colorAccent">#444</color>
+    <color name="colorBgToolbar">#ffffff</color>
+    <color name="colorBgItemSelected">#ddd</color>
+    <color name="colorSkeleton">#ddd</color>
+    <color name="colorSkeletonWave">#CCCCCC</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="colorWarning">#FBC02D</color>
+    <color name="colorDanger">#dc3545</color>
+</resources>

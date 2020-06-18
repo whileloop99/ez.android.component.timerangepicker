@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="org.threeten.bp.format.DateTimeFormatter"/>
+        <import type="java.util.Locale"/>
+        <variable
+            name="handler"
+            type="ez.android.timerangepicker.TimeRangePickerBottomSheetFragment" />
+        <variable
+            name="viewModel"
+            type="ez.android.timerangepicker.TimeRangePickerBottomSheetFragmentViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+<!--        Header-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_block"
+            android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="キャンセル"
+                android:onClick="@{e -> handler.dismiss()}"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="時間帯調整"
+                android:textSize="18dp"
+                android:gravity="center" />
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="設定"
+                android:onClick="@{e -> handler.doSave()}"/>
+        </LinearLayout>
+
+<!--        Body-->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@{viewModel.start.format(DateTimeFormatter.ofPattern(`HH:mm`, Locale.JAPAN)) + `\n|\n` + viewModel.end.format(DateTimeFormatter.ofPattern(`HH:mm`, Locale.JAPAN))}"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    tools:text="05:00\n|\n23:59"/>
+                <ez.android.timerangepicker.TimeRangePicker
+                    android:id="@+id/timePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/pickerGuide"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/pickerGuide"
+                    app:progressBgStrokeWidth="28dp"
+                    app:progressColor="@color/colorPrimary"
+                    app:divisionColor="@color/colorPrimary"
+                    app:labelColor="@color/colorPrimary"
+                    app:progressStrokeWidth="28dp"
+                    app:sleepLayoutId="@layout/layout_picker_start"
+                    app:wakeLayoutId="@layout/layout_picker_end"
+                    />
+            </FrameLayout>
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="設定クリア"
+            android:onClick="@{e -> handler.doClear()}"/>
+    </LinearLayout>
+</layout>
